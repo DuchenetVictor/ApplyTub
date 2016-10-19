@@ -42,7 +42,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap map) {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                new LatLng(46.200000, 5.216667), 25));
+                new LatLng(46.200000, 5.216667), 20));
 
         try {
 
@@ -50,6 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             KmlLayer layerligne3 = new KmlLayer(map, R.raw.ligne3, getApplicationContext());
             KmlLayer layerligne4 = new KmlLayer(map, R.raw.ligne4, getApplicationContext());
             KmlLayer layerligne5 = new KmlLayer(map, R.raw.ligne5, getApplicationContext());
+
 
             layerligne2.addLayerToMap();
             layerligne3.addLayerToMap();
