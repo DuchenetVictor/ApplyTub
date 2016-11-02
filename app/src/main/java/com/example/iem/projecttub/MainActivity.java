@@ -1,17 +1,21 @@
 package com.example.iem.projecttub;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemSelectedListener;
+
+import java.io.InputStream;
+//import android.widget.AdapterView.OnItemSelectedListener;
 
 public class MainActivity extends Activity {
     Spinner spinnerHoraireLigne;
     Spinner spinnerVisuLigne;
+    int check = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,56 +24,57 @@ public class MainActivity extends Activity {
 
         spinnerHoraireLigne = (Spinner) findViewById(R.id.sprHoraireLigne);
         spinnerVisuLigne = (Spinner) findViewById(R.id.sprVisualisationLigne);
+        final InputStream inputStream = getResources().openRawResource(R.raw.horaireligne);
 
-
-// Create an ArrayAdapter using the string array and a default spinner layout
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.Lignes_array, android.R.layout.simple_spinner_item);
 
-// Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
 
+        // Apply the adapter to the spinner
         spinnerHoraireLigne.setAdapter(adapter);
         spinnerVisuLigne.setAdapter(adapter);
 
-
-        spinnerVisuLigne.setOnItemSelectedListener(new OnItemSelectedListener() {
+        spinnerVisuLigne.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String item = parentView.getItemAtPosition(position).toString();
-                Toast.makeText(parentView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
+                //evite de prendre en compte le clic lors du lancement de l'activité
+                check = check + 1;
+                if (check > 2)
+                {
+                    String item = parentView.getItemAtPosition(position).toString();
+                    Intent myIntent = new Intent(getApplicationContext(), MapsActivity.class);
+                    myIntent.putExtra("FromMain", item);
+                    startActivity(myIntent);
+                }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here
             }
-
         });
 
-        spinnerHoraireLigne.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+        spinnerHoraireLigne.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String item = parentView.getItemAtPosition(position).toString();
-                Toast.makeText(parentView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
+                //evite de prendre en compte le clic lors du lancement de l'activité
+                check = check +1;
+                if(check >2)
+                {
+                    String item = parentView.getItemAtPosition(position).toString();
+                    Intent myIntent = new Intent(getApplicationContext(),HoraireActivity.class);
+                    myIntent.putExtra("FromMain", item);
+                    startActivity(myIntent);
+                }
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
+            public void onNothingSelected(AdapterView<?> parent) {
             }
-
         });
-//        Intent myIntent = new Intent(getApplicationContext(), MapsActivity.class);
-//        myIntent.putExtra("keyA", messageA);
-//        startActivity(myIntent);
-
-
     }
-
-
 }
 

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="Lignes_array">
+        <item>ligne1</item>
         <item>ligne2</item>
         <item>ligne3</item>
+        <item>ligne21</item>
         <item>ligne4</item>
         <item>ligne5</item>
+        <item>ligne6</item>
+        <item>ligne7</item>
+        <item>ligne8</item>
     </string-array>
 </resources>

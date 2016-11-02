@@ -43,25 +43,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap map) {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(46.200000, 5.216667), 14.0f));
+
+        String paramFromMain = getIntent().getStringExtra("FromMain");
         try {
-
-            KmlLayer layerligne2 = new KmlLayer(map, R.raw.ligne2, getApplicationContext());
-            KmlLayer layerligne3 = new KmlLayer(map, R.raw.ligne3, getApplicationContext());
-            KmlLayer layerligne4 = new KmlLayer(map, R.raw.ligne4, getApplicationContext());
-            KmlLayer layerligne5 = new KmlLayer(map, R.raw.ligne5, getApplicationContext());
-
-
-            layerligne2.addLayerToMap();
-            layerligne3.addLayerToMap();
-            layerligne4.addLayerToMap();
-            layerligne5.addLayerToMap();
-            
+            switch(paramFromMain){
+                case "ligne1" :
+                    KmlLayer layerligne1 = new KmlLayer(map, R.raw.ligne_1, getApplicationContext());
+                    layerligne1.addLayerToMap();
+                    break;
+                case "ligne2" :
+                    KmlLayer layerligne2 = new KmlLayer(map, R.raw.ligne_2, getApplicationContext());
+                    layerligne2.addLayerToMap();
+                    break;
+                case "ligne3" :
+                    KmlLayer layerligne3 = new KmlLayer(map, R.raw.ligne_3, getApplicationContext());
+                    layerligne3.addLayerToMap();
+                    break;
+                case "ligne21" :
+                    KmlLayer layerligne21 = new KmlLayer(map, R.raw.ligne_21, getApplicationContext());
+                    layerligne21.addLayerToMap();
+                    break;
+                case "ligne4" :
+                    KmlLayer layerligne4 = new KmlLayer(map, R.raw.ligne_4, getApplicationContext());
+                    layerligne4.addLayerToMap();
+                    break;
+                case "ligne5" :
+                    KmlLayer layerligne5 = new KmlLayer(map, R.raw.ligne_5, getApplicationContext());
+                    layerligne5.addLayerToMap();
+                    break;
+                case "ligne6" :
+                    KmlLayer layerligne6 = new KmlLayer(map, R.raw.ligne_6, getApplicationContext());
+                    layerligne6.addLayerToMap();
+                    break;
+                case "ligne7" :
+                    KmlLayer layerligne7 = new KmlLayer(map, R.raw.ligne_7, getApplicationContext());
+                    layerligne7.addLayerToMap();
+                    break;
+                case "ligne8" :
+                    KmlLayer layerligne8 = new KmlLayer(map, R.raw.ligne_4, getApplicationContext());
+                    layerligne8.addLayerToMap();
+                    break;
+                default :
+                    //todo afficher toutes les lignes d'un coup
+                    break;
+            }
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
 
