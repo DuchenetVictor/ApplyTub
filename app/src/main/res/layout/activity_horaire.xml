@@ -10,4 +10,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.iem.projecttub.HoraireActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txvNomLigne"
+                android:layout_weight="10" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:id="@+id/btnSensInverse"
+                android:background="@android:drawable/btn_default"
+                style="@style/Widget.AppCompat.Button"
+                android:elevation="0dp"
+                android:text="Inverser" />
+
+        </LinearLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:stretchColumns="0"
+        android:layout_height="wrap_content"
+        android:id="@+id/idTable">
+    </TableLayout>
+
+
+</LinearLayout>
 </RelativeLayout>
