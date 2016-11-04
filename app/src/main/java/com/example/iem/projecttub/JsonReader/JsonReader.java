@@ -58,7 +58,9 @@ public class JsonReader {
 
                     //todo ne rentre pas dans le if
                     //on recupere seulement le sens du trajet voulu
-                    if (nomTrajet == sens){
+                    Log.d("comp",nomTrajet + " / " + sens );
+                   // if (nomTrajet == sens){
+
                         JSONArray  jArrayArret = jArrayTrajet.getJSONObject(i).getJSONArray("arret");
 
                         for (int j = 0; j < jArrayArret.length();j++)
@@ -70,7 +72,7 @@ public class JsonReader {
 
                             arrets.add(arret);
                         }
-                    }
+                   // }
                 }
             }
         } catch (Exception e) {

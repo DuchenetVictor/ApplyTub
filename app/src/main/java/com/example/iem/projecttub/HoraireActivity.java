@@ -2,6 +2,8 @@ package com.example.iem.projecttub;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.style.BackgroundColorSpan;
+import android.util.Log;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HoraireActivity extends AppCompatActivity {
+public class    HoraireActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,12 @@ public class HoraireActivity extends AppCompatActivity {
             TextView tv1;
 
             for(Arret arret : horaireArret){
+                Log.d("arret",arret.getNom());
                 row = new TableRow(this);
                 tv1 = new TextView(this); // création cellule
                 tv1.setText(arret.getNom());
                 row.addView(tv1);
+                tablelayout.addView(row);
             }
 
         }catch (NullPointerException e){
