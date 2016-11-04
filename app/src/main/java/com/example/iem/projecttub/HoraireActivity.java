@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.iem.projecttub.JsonReader.JsonReader;
@@ -28,23 +29,24 @@ public class HoraireActivity extends AppCompatActivity {
 
         JsonReader js = new JsonReader();
         try{
-            List<Arret> horaireArret = new ArrayList<>(js.horaireLigne(1, "MN", inputStream));
+            List<Arret> horaireArret = new ArrayList<>();
+            horaireArret.addAll(js.horaireLigne(1, "MN", inputStream));
 
-
+//todo finir.
             //construction du tableau
             TableRow row;
+            TextView tv1;
 
             for(Arret arret : horaireArret){
                 row = new TableRow(this);
-
+                tv1 = new TextView(this); // création cellule
+                tv1.setText(arret.getNom());
+                row.addView(tv1);
             }
 
         }catch (NullPointerException e){
             Toast.makeText(this,"une erreur c'est produit dans la lecture du js "
                     +e.getMessage(),Toast.LENGTH_LONG);
             }
-
-
-
     }
 }

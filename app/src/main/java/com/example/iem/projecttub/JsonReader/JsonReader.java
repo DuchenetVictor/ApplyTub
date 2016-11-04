@@ -56,6 +56,7 @@ public class JsonReader {
                 for (int i =0; i<jArrayTrajet.length();i++ ){
                     nomTrajet = jArrayTrajet.getJSONObject(i).getString("-name");
 
+                    //todo ne rentre pas dans le if
                     //on recupere seulement le sens du trajet voulu
                     if (nomTrajet == sens){
                         JSONArray  jArrayArret = jArrayTrajet.getJSONObject(i).getJSONArray("arret");
