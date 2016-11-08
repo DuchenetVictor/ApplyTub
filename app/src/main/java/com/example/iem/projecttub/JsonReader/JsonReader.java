@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,57 +23,60 @@ import java.util.List;
 
 public class JsonReader {
 
-    public List<Arret> horaireLigne(int numLigne,String sens, InputStream inputstream ) {
-        List<Arret> arrets = new ArrayList<>();
+    public List<Arret> horaireLigne(int numLigne,String sensVoulu, InputStream inputstream ) {
 
+        List<Arret> arrets = new ArrayList<>();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         int ctr;
+
         try {
             ctr = inputstream.read();
             while (ctr != -1) {
                 byteArrayOutputStream.write(ctr);
                 ctr = inputstream.read();
+                Log.d("json", String.valueOf(ctr));
             }
             inputstream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         try {
 
             // Parse the data into jsonobject to get original data in form of json.
             JSONObject jObject = new JSONObject(byteArrayOutputStream.toString());
 
-            JSONObject jObjectResult = jObject.getJSONObject("ligne");
-            int ligne = jObjectResult.getInt("-name");
+            JSONObject root = jObject.getJSONObject("ressources");
+            JSONArray ligne = root.getJSONArray("ligne");
+            int id;
+            Log.d("json","init");
+            for(int i = 0; i > ligne.length();i++){
 
-            //cherche le bon numero de ligne
-            if(ligne == numLigne ){
-                JSONArray jArrayTrajet = jObjectResult.getJSONArray("trajet");
+                Log.d("json","ligne.lengh" + ligne.length());
 
-                String nomTrajet, nomArret;
-                String[] horaires;
+                id = ligne.getJSONObject(i).getInt("-name");
 
-                //recupere le nombre de trajet different ( aller / retour )
-                for (int i =0; i<jArrayTrajet.length();i++ ){
-                    nomTrajet = jArrayTrajet.getJSONObject(i).getString("-name");
+                Log.d("json","id de ligne " + id);
 
-                    //todo ne rentre pas dans le if
-                    //on recupere seulement le sens du trajet voulu
-                    Log.d("comp",nomTrajet + " / " + sens );
-                   // if (nomTrajet == sens){
+                if(id == numLigne){
+                    JSONArray trajet = ligne.getJSONArray(i);
+                    for (int j = 0; j > trajet.length();i++){
+                        String sensTrajet = trajet.getJSONObject(j).getString("-name");
 
-                        JSONArray  jArrayArret = jArrayTrajet.getJSONObject(i).getJSONArray("arret");
+                        Log.d("json","senstrajet "+ sensTrajet);
 
-                        for (int j = 0; j < jArrayArret.length();j++)
-                        {
-                            nomArret = jArrayArret.getJSONObject(j).getString("-name");
+                        if(sensTrajet == sensVoulu){
+                            JSONArray arretJson = ligne.getJSONArray(j);
+                            for(int k = 0;  k > arretJson.length(); k ++){
+                                String nomArret = arretJson.getJSONObject(k).getString("-name");
+                                String[] horaires = arretJson.getJSONObject(k).getString("horaire").split(" ");
 
-                            horaires = jArrayArret.getJSONObject(j).getString("horaire").split(" ");
-                            Arret arret = new Arret(nomArret,Arrays.asList(horaires));
-
-                            arrets.add(arret);
+                                Log.d("json"," nomArret "+ nomArret);
+                                Arret arret = new Arret(nomArret,Arrays.asList(horaires));
+                            }
                         }
-                   // }
+                    }
+
                 }
             }
         } catch (Exception e) {
@@ -80,4 +84,17 @@ public class JsonReader {
         }
         return arrets;
     }
+
+
+    public List<String> readJsonStream(InputStream in) throws IOException {
+        JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
+        try {
+            return readMessagesArray(reader);
+        } finally {
+            reader.close();
+        }
+    }
+
+
+
 }
