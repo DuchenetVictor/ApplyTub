@@ -24,10 +24,7 @@ public class HoraireActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horaire);
 
-
-
-
-         inputStream = getResources().openRawResource(R.raw.horaireligne);
+        inputStream = getResources().openRawResource(R.raw.horaireligne);
 
         JsonReader js = new JsonReader();
         try{
@@ -39,7 +36,7 @@ public class HoraireActivity extends AppCompatActivity {
             List<Arret> horaireArret = new ArrayList<>();
             horaireArret.addAll(js.horaireLigne(id, "MN", inputStream));
 
-//todo finir.
+//todo finir. http://www.androidhive.info/2012/01/android-json-parsing-tutorial/
             TableLayout tablelayout = (TableLayout) findViewById(R.id.idTable);
             //construction du tableau
             TableRow row;
@@ -57,6 +54,6 @@ public class HoraireActivity extends AppCompatActivity {
         }catch (NullPointerException e){
             Toast.makeText(this,"une erreur c'est produit dans la lecture du js "
                     +e.getMessage(),Toast.LENGTH_LONG);
-            }
+        }
     }
 }
