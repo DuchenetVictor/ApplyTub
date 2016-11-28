@@ -24,25 +24,22 @@ public class JsonReader {
 
     public List<Arret> horaireLigne(int numLigne,String sensVoulu, InputStream inputstream ) {
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream));
-            StringBuilder sb = new StringBuilder();
-
-            String line;
-            try {
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line).append('\n');
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream));
+        StringBuffer sb=new StringBuffer();
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append('\n');
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         List<Arret> arrets = new ArrayList<>();
 
         try {
-
             // Parse the data into jsonobject to get original data in form of json.
             JSONObject jObject = new JSONObject(sb.toString());
-
             JSONObject root = jObject.getJSONObject("ressources");
             JSONArray ligne = root.getJSONArray("ligne");
 
@@ -51,20 +48,20 @@ public class JsonReader {
             for(int i = 0; i < ligne.length();i++){
                 id = ligne.getJSONObject(i).getInt("-name");
                 if(id == numLigne){
-                    JSONArray trajet = ligne.getJSONArray(i);
+                    Log.d("json","id :"+id+"numLigne :"+numLigne);
+                    JSONArray trajet = ligne.getJSONObject(i).getJSONArray("trajet");
+
                     for (int j = 0; j < trajet.length();i++){
                         String sensTrajet = trajet.getJSONObject(j).getString("-name");
 
-                        Log.d("json","senstrajet "+ sensTrajet);
-
-                        if(sensTrajet == sensVoulu){
-                            JSONArray arretJson = ligne.getJSONArray(j);
+                        if(sensTrajet.equals(sensVoulu)){
+                            JSONArray arretJson = trajet.getJSONObject(i).getJSONArray("-name");//probleme
                             for(int k = 0;  k < arretJson.length(); k ++){
                                 String nomArret = arretJson.getJSONObject(k).getString("-name");
                                 String[] horaires = arretJson.getJSONObject(k).getString("horaire").split(" ");
 
                                 Log.d("json"," nomArret "+ nomArret);
-                                Arret arret = new Arret(nomArret,Arrays.asList(horaires));
+                                arrets.add(new Arret(nomArret,Arrays.asList(horaires)));
                             }
                         }
                     }
