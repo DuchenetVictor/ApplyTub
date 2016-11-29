@@ -60,7 +60,7 @@ public class JsonReader {
                         String sensTrajet = trajet.getJSONObject(j).getString("-name");
 
                         if(sensTrajet.equals(sensVoulu)){
-                            JSONArray arretJson = trajet.getJSONObject(i).getJSONArray("arret");//probleme
+                            JSONArray arretJson = trajet.getJSONObject(i).getJSONArray("arret");
                             for(int k = 0;  k < arretJson.length(); k ++){
                                 String nomArret = arretJson.getJSONObject(k).getString("-name");
                                 String[] horaires = arretJson.getJSONObject(k).getString("horaire").split(" ");

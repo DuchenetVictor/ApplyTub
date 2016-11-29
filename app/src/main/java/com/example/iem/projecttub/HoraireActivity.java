@@ -3,6 +3,7 @@ package com.example.iem.projecttub;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ import java.util.List;
 public class HoraireActivity extends AppCompatActivity {
 
     InputStream inputStream;
+    TextView sensArret;
+    Button inverser ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public class HoraireActivity extends AppCompatActivity {
         setContentView(R.layout.activity_horaire);
 
         inputStream = getResources().openRawResource(R.raw.horaireligne);
+        inverser = (Button)findViewById(R.id.btnSensInverse);
 
         JsonReader js = new JsonReader();
         try{
@@ -36,17 +40,29 @@ public class HoraireActivity extends AppCompatActivity {
             List<Arret> horaireArret = new ArrayList<>();
             horaireArret.addAll(js.horaireLigne(id, "MN", inputStream));
 
-//todo finir. http://www.androidhive.info/2012/01/android-json-parsing-tutorial/
-            TableLayout tablelayout = (TableLayout) findViewById(R.id.idTable);
+            //todo finir.
+
+            //afffiche le sens de la ligne
+            sensArret = (TextView)findViewById(R.id.txvSensLigne);
+            sensArret.setText(horaireArret.get(0).getNom()+ " -> " + horaireArret.get(horaireArret.size()-1).getNom());
+
             //construction du tableau
+            TableLayout tablelayout = (TableLayout) findViewById(R.id.idTable);
+
             TableRow row;
             TextView tv1;
 
             for(Arret arret : horaireArret){
                 Log.d("arret",arret.getNom());
                 row = new TableRow(this);
-                tv1 = new TextView(this); // création cellule
+                tv1 = new TextView(this);
+                // création cellule
                 tv1.setText(arret.getNom());
+                // creation cellule avec tous les horaires
+                for (String horaire: arret.getHoraires()) {
+                    new TextView(this);
+                   tv1.setText(tv1.getText() + " " +horaire);
+                }
                 row.addView(tv1);
                 tablelayout.addView(row);
             }
