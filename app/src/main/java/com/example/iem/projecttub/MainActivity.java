@@ -8,9 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import java.io.InputStream;
-//import android.widget.AdapterView.OnItemSelectedListener;
-
 public class MainActivity extends Activity {
     Spinner spinnerHoraireLigne;
     Spinner spinnerVisuLigne;
@@ -21,10 +18,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        spinnerHoraireLigne = (Spinner) findViewById(R.id.sprHoraireLigne);
-        spinnerVisuLigne = (Spinner) findViewById(R.id.sprVisualisationLigne);
-        final InputStream inputStream = getResources().openRawResource(R.raw.horaireligne);
-
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.Lignes_array, android.R.layout.simple_spinner_item);
@@ -32,10 +25,9 @@ public class MainActivity extends Activity {
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Apply the adapter to the spinner
-        spinnerHoraireLigne.setAdapter(adapter);
-        spinnerVisuLigne.setAdapter(adapter);
 
+        spinnerVisuLigne = (Spinner) findViewById(R.id.sprVisualisationLigne);
+        spinnerVisuLigne.setAdapter(adapter);
         spinnerVisuLigne.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -55,14 +47,17 @@ public class MainActivity extends Activity {
             }
         });
 
-
+        spinnerHoraireLigne = (Spinner) findViewById(R.id.sprHoraireLigne);
+        spinnerHoraireLigne.setAdapter(adapter);
         spinnerHoraireLigne.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 //evite de prendre en compte le clic lors du lancement de l'activité
                 check = check +1;
-                if(check >2)
+                if(check > 2)
                 {
+
+
                     String item = parentView.getItemAtPosition(position).toString();
                     Intent myIntent = new Intent(getApplicationContext(),HoraireActivity.class);
                     myIntent.putExtra("FromMain", item);
