@@ -1,9 +1,12 @@
 package com.example.iem.projecttub.JsonReader;
 
 
+import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import com.example.iem.projecttub.POJO.Arret;
+import com.example.iem.projecttub.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,27 +27,50 @@ import java.util.List;
 
 public class JsonReader {
 
+    private static JsonReader mInstance;
+    private InputStream inputStream;
+    private StringBuffer stringBuffer;
+    private boolean init=false;
 
-    public List<Arret> horaireLigne(int numLigne,String sensVoulu, InputStream inputstream ) {
-
-
-        //TODO mettre en place un singleton
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream));
-        StringBuffer sb=new StringBuffer();
-        String line;
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line).append('\n');
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    //singleton
+    public static JsonReader getInstance() {
+        if (mInstance == null) {
+            mInstance = new JsonReader();
         }
 
-        List<Arret> arrets = new ArrayList<>();
+        return mInstance;
+    }
 
+    //constructeur
+     public JsonReader(){
+     }
+
+    private void initJson(Context context) {
+        if(!init) {
+            inputStream = context.getResources().openRawResource(R.raw.horaireligne);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuffer sb = new StringBuffer();
+            String line;
+            try {
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line).append('\n');
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            this.stringBuffer = sb;
+            init = true;
+        }
+
+    }
+
+    public List<Arret> horaireLigne(int numLigne,String sensVoulu, Context context) {
+
+        initJson(context);
+        List<Arret> arrets = new ArrayList<>();
         try {
             // Parse the data into jsonobject to get original data in form of json.
-            JSONObject jObject = new JSONObject(sb.toString());
+            JSONObject jObject = new JSONObject(stringBuffer.toString());
             JSONObject root = jObject.getJSONObject("ressources");
             JSONArray ligne = root.getJSONArray("ligne");
 

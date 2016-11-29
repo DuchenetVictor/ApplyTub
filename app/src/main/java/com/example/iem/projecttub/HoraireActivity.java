@@ -28,18 +28,19 @@ public class HoraireActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_horaire);
 
-        inputStream = getResources().openRawResource(R.raw.horaireligne);
         final List<Arret> horaireArret = new ArrayList<>();
-        final JsonReader js = new JsonReader();
-        String allerRetour = "";
+
+
+        final JsonReader js = JsonReader.getInstance();
+
 
         String paramFromMain = getIntent().getStringExtra("FromMain");
         String idString = paramFromMain.replace("ligne ", "");
         final int id = Integer.parseInt(idString);
 
         try {
-            allerRetour = "aller";
-            horaireArret.addAll(js.horaireLigne(id, allerRetour, inputStream));
+
+            horaireArret.addAll(js.horaireLigne(id,"aller",getApplicationContext()));
 
             //todo finir.
             //affiche le sens de la ligne
