@@ -8,9 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import java.io.InputStream;
-//import android.widget.AdapterView.OnItemSelectedListener;
-
 public class MainActivity extends Activity {
     Spinner spinnerHoraireLigne;
     Spinner spinnerVisuLigne;

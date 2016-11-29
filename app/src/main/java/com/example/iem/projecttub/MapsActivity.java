@@ -47,39 +47,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String paramFromMain = getIntent().getStringExtra("FromMain");
         try {
             switch(paramFromMain){
-                case "ligne1" :
+                case "ligne 1" :
                     KmlLayer layerligne1 = new KmlLayer(map, R.raw.ligne_1, getApplicationContext());
                     layerligne1.addLayerToMap();
                     break;
-                case "ligne2" :
+                case "ligne 2" :
                     KmlLayer layerligne2 = new KmlLayer(map, R.raw.ligne_2, getApplicationContext());
                     layerligne2.addLayerToMap();
                     break;
-                case "ligne3" :
+                case "ligne 3" :
                     KmlLayer layerligne3 = new KmlLayer(map, R.raw.ligne_3, getApplicationContext());
                     layerligne3.addLayerToMap();
                     break;
-                case "ligne21" :
+                case "ligne 21" :
                     KmlLayer layerligne21 = new KmlLayer(map, R.raw.ligne_21, getApplicationContext());
                     layerligne21.addLayerToMap();
                     break;
-                case "ligne4" :
+                case "ligne 4" :
                     KmlLayer layerligne4 = new KmlLayer(map, R.raw.ligne_4, getApplicationContext());
                     layerligne4.addLayerToMap();
                     break;
-                case "ligne5" :
+                case "ligne 5" :
                     KmlLayer layerligne5 = new KmlLayer(map, R.raw.ligne_5, getApplicationContext());
                     layerligne5.addLayerToMap();
                     break;
-                case "ligne6" :
+                case "ligne 6" :
                     KmlLayer layerligne6 = new KmlLayer(map, R.raw.ligne_6, getApplicationContext());
                     layerligne6.addLayerToMap();
                     break;
-                case "ligne7" :
+                case "ligne 7" :
                     KmlLayer layerligne7 = new KmlLayer(map, R.raw.ligne_7, getApplicationContext());
                     layerligne7.addLayerToMap();
                     break;
-                case "ligne8" :
+                case "ligne 8" :
                     KmlLayer layerligne8 = new KmlLayer(map, R.raw.ligne_4, getApplicationContext());
                     layerligne8.addLayerToMap();
                     break;

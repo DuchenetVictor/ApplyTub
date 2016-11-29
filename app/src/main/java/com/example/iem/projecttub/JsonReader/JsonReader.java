@@ -20,10 +20,15 @@ import java.util.List;
  * Created by iem on 02/11/2016.
  */
 
+
+
 public class JsonReader {
+
 
     public List<Arret> horaireLigne(int numLigne,String sensVoulu, InputStream inputstream ) {
 
+
+        //TODO mettre en place un singleton
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputstream));
         StringBuffer sb=new StringBuffer();
         String line;
@@ -55,7 +60,7 @@ public class JsonReader {
                         String sensTrajet = trajet.getJSONObject(j).getString("-name");
 
                         if(sensTrajet.equals(sensVoulu)){
-                            JSONArray arretJson = trajet.getJSONObject(i).getJSONArray("-name");//probleme
+                            JSONArray arretJson = trajet.getJSONObject(i).getJSONArray("arret");//probleme
                             for(int k = 0;  k < arretJson.length(); k ++){
                                 String nomArret = arretJson.getJSONObject(k).getString("-name");
                                 String[] horaires = arretJson.getJSONObject(k).getString("horaire").split(" ");
