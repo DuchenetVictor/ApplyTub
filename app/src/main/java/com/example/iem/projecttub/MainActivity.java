@@ -56,8 +56,6 @@ public class MainActivity extends Activity {
                 check = check +1;
                 if(check > 2)
                 {
-
-
                     String item = parentView.getItemAtPosition(position).toString();
                     Intent myIntent = new Intent(getApplicationContext(),HoraireActivity.class);
                     myIntent.putExtra("FromMain", item);

@@ -1,7 +1,5 @@
 package com.example.iem.projecttub.JsonReader;
 
-
-import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
@@ -22,9 +20,6 @@ import java.util.List;
 /**
  * Created by iem on 02/11/2016.
  */
-
-
-
 public class JsonReader {
 
     private static JsonReader mInstance;
@@ -75,23 +70,20 @@ public class JsonReader {
             JSONArray ligne = root.getJSONArray("ligne");
 
             int id;
-            Log.d("json","init");
             for(int i = 0; i < ligne.length();i++){
                 id = ligne.getJSONObject(i).getInt("-name");
                 if(id == numLigne){
-                    Log.d("json","id :"+id+"numLigne :"+numLigne);
                     JSONArray trajet = ligne.getJSONObject(i).getJSONArray("trajet");
 
-                    for (int j = 0; j < trajet.length();i++){
+                    for (int j = 0; j < trajet.length();j++){
                         String sensTrajet = trajet.getJSONObject(j).getString("-name");
 
                         if(sensTrajet.equals(sensVoulu)){
-                            JSONArray arretJson = trajet.getJSONObject(i).getJSONArray("arret");
+                            JSONArray arretJson = trajet.getJSONObject(j).getJSONArray("arret");
                             for(int k = 0;  k < arretJson.length(); k ++){
                                 String nomArret = arretJson.getJSONObject(k).getString("-name");
                                 String[] horaires = arretJson.getJSONObject(k).getString("horaire").split(" ");
 
-                                Log.d("json"," nomArret "+ nomArret);
                                 arrets.add(new Arret(nomArret,Arrays.asList(horaires)));
                             }
                         }
