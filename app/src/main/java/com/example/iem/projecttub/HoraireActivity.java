@@ -3,6 +3,7 @@ package com.example.iem.projecttub;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -28,23 +29,22 @@ public class HoraireActivity extends AppCompatActivity {
         setContentView(R.layout.activity_horaire);
 
         inputStream = getResources().openRawResource(R.raw.horaireligne);
-        inverser = (Button)findViewById(R.id.btnSensInverse);
+        final List<Arret> horaireArret = new ArrayList<>();
+        final JsonReader js = new JsonReader();
+        String allerRetour = "";
 
-        JsonReader js = new JsonReader();
-        try{
+        String paramFromMain = getIntent().getStringExtra("FromMain");
+        String idString = paramFromMain.replace("ligne ", "");
+        final int id = Integer.parseInt(idString);
 
-            String paramFromMain = getIntent().getStringExtra("FromMain");
-            String idString = paramFromMain.replace("ligne ","");
-            int id = Integer.parseInt(idString);
-
-            List<Arret> horaireArret = new ArrayList<>();
-            horaireArret.addAll(js.horaireLigne(id, "MN", inputStream));
+        try {
+            allerRetour = "aller";
+            horaireArret.addAll(js.horaireLigne(id, allerRetour, inputStream));
 
             //todo finir.
-
-            //afffiche le sens de la ligne
-            sensArret = (TextView)findViewById(R.id.txvSensLigne);
-            sensArret.setText(horaireArret.get(0).getNom()+ " -> " + horaireArret.get(horaireArret.size()-1).getNom());
+            //affiche le sens de la ligne
+            sensArret = (TextView) findViewById(R.id.txvSensLigne);
+            sensArret.setText(horaireArret.get(0).getNom() + " -> " + horaireArret.get(horaireArret.size() - 1).getNom());
 
             //construction du tableau
             TableLayout tablelayout = (TableLayout) findViewById(R.id.idTable);
@@ -52,24 +52,31 @@ public class HoraireActivity extends AppCompatActivity {
             TableRow row;
             TextView tv1;
 
-            for(Arret arret : horaireArret){
-                Log.d("arret",arret.getNom());
+            for (Arret arret : horaireArret) {
+                Log.d("arret", arret.getNom());
                 row = new TableRow(this);
                 tv1 = new TextView(this);
                 // création cellule
                 tv1.setText(arret.getNom());
                 // creation cellule avec tous les horaires
-                for (String horaire: arret.getHoraires()) {
+                for (String horaire : arret.getHoraires()) {
                     new TextView(this);
-                   tv1.setText(tv1.getText() + " " +horaire);
+                    tv1.setText(tv1.getText() + " " + horaire);
                 }
                 row.addView(tv1);
                 tablelayout.addView(row);
             }
 
-        }catch (NullPointerException e){
-            Toast.makeText(this,"une erreur c'est produit dans la lecture du js "
-                    +e.getMessage(),Toast.LENGTH_LONG);
+        } catch (NullPointerException e) {
+            Toast.makeText(this, "une erreur c'est produit dans la lecture du js "
+                    + e.getMessage(), Toast.LENGTH_LONG);
         }
+
+        //todo faire le changement de ligne au clique du bouton
+        inverser = (Button) findViewById(R.id.btnSensInverse);
+        inverser.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+            }});
     }
 }
