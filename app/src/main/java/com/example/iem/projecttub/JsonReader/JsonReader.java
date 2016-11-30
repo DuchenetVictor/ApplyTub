@@ -36,6 +36,7 @@ public class JsonReader {
         return mInstance;
     }
 
+    
     //constructeur
      public JsonReader(){
      }
