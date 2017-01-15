@@ -1,12 +1,19 @@
 package com.example.iem.projecttub.POJO;
 
+import com.example.iem.projecttub.Controller.MyDatabase;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
+
 import java.util.List;
 
 /**
  * Created by iem on 04/11/2016.
  */
+//// TODO: 15/01/2017 https://guides.codepath.com/android/DBFlow-Guide
+// TODO: 15/01/2017 faire schema sqlite
 
-public class Arret {
+@Table(database = MyDatabase.class)
+public class Arret extends BaseModel {
     private String nom;
     private List<String>horaires;
 
