@@ -5,3 +5,29 @@ Retrofit connection reseau ( mettre en place avec mvc )
 
 
 Dbflow -> DAO
+
+bdd webservice
+-strucuture de la bdd
+    Passage
+        -ID
+        -IdPassageBef
+        -IdPassageAft
+        -IDLine
+        -IDStop
+        -TimePassage
+        -DatePassage
+
+    line
+        -ID
+        -Name
+        -Sens
+
+    Stop
+        -ID
+        -Name
+        -Longitude
+        -Latitude
+
+    StopsLine
+        -IDLine
+        -IDStop

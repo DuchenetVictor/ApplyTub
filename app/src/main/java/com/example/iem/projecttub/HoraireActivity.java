@@ -1,3 +1,4 @@
+
 package com.example.iem.projecttub;
 
 import android.os.Bundle;
@@ -11,14 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.iem.projecttub.JsonReader.JsonReader;
-import com.example.iem.projecttub.POJO.Arret;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class HoraireActivity extends AppCompatActivity {
-
+/*
     InputStream inputStream;
     TextView sensArret;
     Button inverser ;
@@ -100,5 +100,6 @@ public class HoraireActivity extends AppCompatActivity {
             row.addView(tv1);
             tablelayout.addView(row);
         }
-    }
+    }*/
 }
+

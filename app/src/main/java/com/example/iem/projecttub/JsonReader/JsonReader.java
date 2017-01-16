@@ -1,9 +1,7 @@
 package com.example.iem.projecttub.JsonReader;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.example.iem.projecttub.POJO.Arret;
 import com.example.iem.projecttub.R;
 
 import org.json.JSONArray;
@@ -15,7 +13,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by iem on 02/11/2016.
@@ -60,7 +57,7 @@ public class JsonReader {
 
     }
 
-    public List<Arret> horaireLigne(int numLigne,String sensVoulu, Context context) {
+    /*public List<Arret> horaireLigne(int numLigne,String sensVoulu, Context context) {
 
         initJson(context);
         List<Arret> arrets = new ArrayList<>();
@@ -95,5 +92,5 @@ public class JsonReader {
             e.printStackTrace();
         }
         return arrets;
-    }
+    }*/
 }
