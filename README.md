@@ -2,16 +2,17 @@ Créer un dossier de 12 page , avec presentation de l’appli de depart , puis d
 
 Faire un web service + faire schema mvc  
 Retrofit connection reseau ( mettre en place avec mvc )
+(INPROGRESS)Dbflow -> DAO
+            Tester les arraylist , comment ca reagi
+Integrer Gson!
 
 
-Dbflow -> DAO
 
 bdd webservice
 -strucuture de la bdd
     Passage
         -ID
-        -IdPassageBef
-        -IdPassageAft
+        -OrderPassage
         -IDLine
         -IDStop
         -TimePassage
@@ -20,13 +21,15 @@ bdd webservice
     line
         -ID
         -Name
-        -Sens
+        -sens
 
     Stop
         -ID
         -Name
         -Longitude
         -Latitude
+
+
 
     StopsLine
         -IDLine

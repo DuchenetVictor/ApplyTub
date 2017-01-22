@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.iem.projecttub.Controller.CRUDDatabase;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
@@ -30,6 +31,13 @@ public class MainActivity extends Activity {
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+/*todo recupere les données en lazy ??
+recuperer les lignes une a une lors du clique sur le spinner ?
+faire le traitement en base (WS)
+recupere seulement dans la sqlite les lignes/ les horaires: 
+tout ce qui est des recherche de voyage c'est en webservice....( evite les traitement lourd et de trop emcombrer les sqlitebdd)
+
+*/
 
         spinnerVisuLigne = (Spinner) findViewById(R.id.sprVisualisationLigne);
         spinnerVisuLigne.setAdapter(adapter);

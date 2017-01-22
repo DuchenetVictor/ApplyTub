@@ -6,6 +6,8 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import java.util.ArrayList;
+
 /**
  * Created by David_tepoche on 16/01/2017.
  */
@@ -19,16 +21,18 @@ public class Line extends BaseModel{
     private String Name;
     @Column
     private String Sens;
+    @Column
+    private ArrayList<Stop> Stops;
 
-    public Line(int id, String name, String sens) {
+
+    public Line() {
+    }
+
+    public Line(int id, String name, String sens, ArrayList<Stop> stops) {
         Id = id;
         Name = name;
         Sens = sens;
-    }
-
-    public Line() {
-
-
+        Stops = stops;
     }
 
     public int getId() {
@@ -53,5 +57,13 @@ public class Line extends BaseModel{
 
     public void setSens(String sens) {
         Sens = sens;
+    }
+
+    public ArrayList<Stop> getStops() {
+        return Stops;
+    }
+
+    public void setStops(ArrayList<Stop> stops) {
+        Stops = stops;
     }
 }
