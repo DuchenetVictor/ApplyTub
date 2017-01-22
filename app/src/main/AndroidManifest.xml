@@ -30,7 +30,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,10 +39,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MapsActivity">
+            android:name=".Activity.MapsActivity">
 
         </activity>
-        <activity android:name=".HoraireActivity"></activity>
+        <activity android:name=".Activity.HoraireActivity"></activity>
     </application>
 
 </manifest>

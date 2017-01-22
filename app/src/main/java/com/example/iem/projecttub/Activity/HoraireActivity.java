@@ -1,5 +1,5 @@
 
-package com.example.iem.projecttub;
+package com.example.iem.projecttub.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
