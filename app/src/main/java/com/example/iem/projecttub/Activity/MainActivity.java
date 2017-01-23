@@ -1,4 +1,4 @@
-package com.example.iem.projecttub;
+package com.example.iem.projecttub.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.iem.projecttub.Controller.CRUDDatabase;
+import com.example.iem.projecttub.R;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 

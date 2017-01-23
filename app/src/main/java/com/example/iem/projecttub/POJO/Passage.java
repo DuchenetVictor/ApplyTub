@@ -22,8 +22,8 @@ public class Passage extends BaseModel {
     private int Id_Line;
     @Column
     private int Id_Stop;
-    //@Column
-   // private Time TimePassage;
+    @Column
+    private String TimePassage;
 
 
     public Passage() {
@@ -77,11 +77,11 @@ public class Passage extends BaseModel {
         Id_Stop = id_Stop;
     }
 
-   /*public Time getTimePassage() {
+    public String getTimePassage() {
         return TimePassage;
     }
 
-    public void setTimePassage(Time timePassage) {
+    public void setTimePassage(String timePassage) {
         TimePassage = timePassage;
-    }*/
+    }
 }

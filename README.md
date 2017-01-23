@@ -9,6 +9,7 @@ Integrer Gson!
 
 
 bdd webservice
+
 -strucuture de la bdd
     Passage
         -ID
@@ -29,8 +30,7 @@ bdd webservice
         -Longitude
         -Latitude
 
-
-
     StopsLine
         -IDLine
         -IDStop
+
