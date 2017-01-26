@@ -1,4 +1,4 @@
-package com.example.iem.projecttub.Controller;
+package com.example.iem.projecttub.Controller.Database;
 
 import android.app.Application;
 

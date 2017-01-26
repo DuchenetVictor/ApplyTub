@@ -1,6 +1,6 @@
 package com.example.iem.projecttub.pojo;
 
-import com.example.iem.projecttub.Controller.MyDatabase;
+import com.example.iem.projecttub.Controller.Database.MyDatabase;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
@@ -21,18 +21,15 @@ public class Line extends BaseModel{
     private String Name;
     @Column
     private String Sens;
-    @Column
-    private ArrayList<Stop> Stops;
 
 
     public Line() {
     }
 
-    public Line(int id, String name, String sens, ArrayList<Stop> stops) {
+    public Line(int id, String name, String sens) {
         Id = id;
         Name = name;
         Sens = sens;
-        Stops = stops;
     }
 
     public int getId() {
@@ -59,11 +56,4 @@ public class Line extends BaseModel{
         Sens = sens;
     }
 
-    public ArrayList<Stop> getStops() {
-        return Stops;
-    }
-
-    public void setStops(ArrayList<Stop> stops) {
-        Stops = stops;
-    }
 }

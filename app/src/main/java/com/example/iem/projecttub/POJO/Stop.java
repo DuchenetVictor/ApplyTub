@@ -1,6 +1,7 @@
 package com.example.iem.projecttub.pojo;
 
-import com.example.iem.projecttub.Controller.MyDatabase;
+import com.example.iem.projecttub.Controller.Database.MyDatabase;
+import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
@@ -16,6 +17,7 @@ public class Stop extends BaseModel {
 
     @PrimaryKey
     @Column
+    @SerializedName("ID")
     private int Id;
     @Column
     private String Name;

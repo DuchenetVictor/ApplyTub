@@ -3,12 +3,13 @@ package com.example.iem.projecttub.Activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.iem.projecttub.Controller.CRUDDatabase;
+import com.example.iem.projecttub.Controller.rest.ApiClient;
 import com.example.iem.projecttub.R;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
@@ -32,6 +33,11 @@ public class MainActivity extends Activity {
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        ApiClient.getStops(getApplicationContext());
+
+
+
+
 /*todo recupere les données en lazy ??
 recuperer les lignes une a une lors du clique sur le spinner ?
 faire le traitement en base (WS)
@@ -40,7 +46,7 @@ tout ce qui est des recherche de voyage c'est en webservice....( evite les trait
 
 */
 
-        spinnerVisuLigne = (Spinner) findViewById(R.id.sprVisualisationLigne);
+         spinnerVisuLigne = (Spinner) findViewById(R.id.sprVisualisationLigne);
         spinnerVisuLigne.setAdapter(adapter);
         spinnerVisuLigne.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

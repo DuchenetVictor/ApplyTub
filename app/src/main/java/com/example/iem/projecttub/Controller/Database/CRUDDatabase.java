@@ -1,4 +1,4 @@
-package com.example.iem.projecttub.Controller;
+package com.example.iem.projecttub.Controller.Database;
 
 /**
  * Created by David_tepoche on 21/01/2017.
